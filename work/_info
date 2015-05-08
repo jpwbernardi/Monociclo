@@ -1,0 +1,119 @@
+m255
+K3
+13
+cModel Technology
+dD:\altera\14.0
+Emux2x1
+Z0 w1431042637
+Z1 DPx4 ieee 15 std_logic_arith 0 22 4`Y?g_lkdn;7UL9IiJck01
+Z2 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z3 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z4 dD:\Documents\Monociclo
+Z5 8D:/Documents/Monociclo/mux2x1.vhd
+Z6 FD:/Documents/Monociclo/mux2x1.vhd
+l0
+L5
+V4M:NnSMSPN:o@;T=N`Q]V0
+Z7 OV;C;10.1e;51
+32
+Z8 !s108 1431043021.082000
+Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/Documents/Monociclo/mux2x1.vhd|
+Z10 !s107 D:/Documents/Monociclo/mux2x1.vhd|
+Z11 o-work work -2002 -explicit -O0
+Z12 tExplicit 1
+!s100 ?0^Q;mFcJ=Da;[2aIMYjB1
+!i10b 1
+Acmp
+R1
+R2
+R3
+DEx4 work 6 mux2x1 0 22 4M:NnSMSPN:o@;T=N`Q]V0
+l14
+L13
+V5W[9a88K?IC0feI?KBZIo3
+R7
+32
+R8
+R9
+R10
+R11
+R12
+!s100 S0D0QT>3fRPJWEbiRF]@01
+!i10b 1
+Ereg32
+w1431042973
+R1
+R2
+R3
+R4
+8D:/Documents/Monociclo/Reg32.vhd
+FD:/Documents/Monociclo/Reg32.vhd
+l0
+L5
+V>0WzCgbOUTMS>VjNzDSD@1
+R7
+32
+R11
+R12
+!s108 1431042978.808000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|D:/Documents/Monociclo/Reg32.vhd|
+!s107 D:/Documents/Monociclo/Reg32.vhd|
+!s100 4nG=ja3U3ViJk21B;2o@h3
+!i10b 1
+Acomp
+w1431043252
+R1
+R2
+R3
+DEx4 work 5 reg32 0 22 >0WzCgbOUTMS>VjNzDSD@1
+Z13 8D:/Documents/Monociclo/SignExtend16to32.vhd
+Z14 FD:/Documents/Monociclo/SignExtend16to32.vhd
+l13
+L12
+Vdj9D5OinoDAzI4o^U5Rj^2
+R7
+32
+Z15 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/Documents/Monociclo/SignExtend16to32.vhd|
+R11
+R12
+Z16 !s107 D:/Documents/Monociclo/SignExtend16to32.vhd|
+!s108 1431043257.570000
+!s100 f`cM[lP@o=lBg68HM0QGM2
+!i10b 1
+Esingextend16to32
+Z17 w1431043276
+R1
+R2
+R3
+R4
+R13
+R14
+l0
+L5
+V2>mh2X72`Meh>Yz]@Eb^_0
+!s100 a?_REi0ILz;V751]`:ET12
+R7
+32
+!i10b 1
+Z18 !s108 1431043279.236000
+R15
+Z19 !s107 D:/Documents/Monociclo/SignExtend16to32.vhd|
+R11
+R12
+Acomp
+R1
+R2
+R3
+Z20 DEx4 work 16 singextend16to32 0 22 2>mh2X72`Meh>Yz]@Eb^_0
+l13
+L12
+Z21 VEWTbTXaUUbSG6:eajTK9f2
+Z22 !s100 lz>a7o3lVfQ7Rci2K:3dZ2
+R7
+32
+!i10b 1
+R18
+R15
+R19
+R11
+R12
