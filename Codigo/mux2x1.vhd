@@ -1,12 +1,12 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
-use IEEE.std_logic_arith.all;
+use IEEE.numeric_std.all;
 
 entity mux2x1 is
     Port(
-      e0, e1 : in std_logic_vector(4 downto 0);
+      e0, e1 : in signed(4 downto 0);
       sel: in std_logic;
-      s: out std_logic_vector(4 downto 0)
+      s: out signed(4 downto 0)
     );
 end mux2x1;
 

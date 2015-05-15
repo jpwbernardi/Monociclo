@@ -1,12 +1,12 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
-use IEEE.std_logic_arith.all;
+use IEEE.numeric_std.all;
 
 entity catExtend is
   Port(
-    offset: in std_logic_vector(25 downto 0);
-    pc: in std_logic_vector(3 downto 0);
-    catExt: out std_logic_vector(31 downto 0)
+    offset: in signed(25 downto 0);
+    pc: in signed(3 downto 0);
+    catExt: out signed(31 downto 0)
   );
 end catExtend;
 
