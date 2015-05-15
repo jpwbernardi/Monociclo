@@ -21,8 +21,13 @@ begin
     elsif(ALUOp = "10") then
       ULASel <= "111";
     elsif(ALUOp = "11") then
-      if()
-      end if
-    end if
-  end process
-end cmp
+      if(func = "100000") then
+        ULASel <= "010";
+      elsif(func = "100010") then
+        ULASel <= "110";
+      elsif(func = "101010") then
+        ULASel <= "111";
+      end if;
+    end if;
+  end process;
+end cmp;
