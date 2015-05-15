@@ -1,0 +1,32 @@
+		.data
+
+		.text
+		
+main:
+	add $s0, $0, $v0 	//$s0 -> Valor maximo
+	000000 00000 00002 10000 00000 100000
+               $0    $v0   $s0
+	
+inicio:
+	add $t0, $0, $0	 	//atual = 0
+	000000 00000 00000 01000 00000 100000
+	       $0    $0    $t0
+
+	addi $t1, $0, 1		//prox = 1
+	001000 00000 01001 00000 00000 000001
+	       $0    $t1   offset
+
+	add $s1, $0, $0		//resp = 0
+	000000 00000 00000 10001 00000 100000
+	       $0    $0    $s1
+
+loop:
+	add $s1, $t0, $0	//resp = atual
+	add $t0, $t1, $0	//atual = prox
+	add $t1, $s1, $t0	//prox = resp + atual
+	slt $t7, $s1, $s0	//s1 < s0 ? t7 = 1 : t7 = 0
+	beq $t7, $0, fim
+	j loop
+	
+fim:
+	nop
