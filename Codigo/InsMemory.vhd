@@ -11,7 +11,7 @@ entity InsMemory is --Instruction Memory
 end InsMemory;
 
 architecture cmp of InsMemory is
-signal memoria: VetorByte(0 to 255);  --256 Bytes de memória
+signal memoria: VetorWord(0 to 255);  --256 Bytes de memória
 begin
   
   

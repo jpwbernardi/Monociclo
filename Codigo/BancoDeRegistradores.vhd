@@ -5,9 +5,9 @@ use IEEE.numeric_std.all;
 entity BancoDeRegistradores is
   Port(
     RR1, RR2, WR: in signed(4 downto 0); --Read Register    Write Register
-    WD: in signed(31 downto 0); --Write Data
+    WD, PC4: in signed(31 downto 0); --Write Data e PC + 4
     jal, RW: in std_logic;  --RegWrite
-    RD1, RD2: out signed(31 downto 0)
+    RD1, RD2, ra: out signed(31 downto 0)
   );
 end BancoDeRegistradores;
 
@@ -18,7 +18,15 @@ r24, r25, r26, r27, r28, r29, r30, r31: signed(31 downto 0);
 begin
   RD1 <= RD1aux;
   RD2 <= RD2aux;
+  ra <= r31;
   
+  process (jal)
+  begin
+    if(jal = '1') then
+      r31 <= PC4;
+    end if;
+  end process;
+
   process(WR, WD, RW)
   begin
 		if(WR = "00000" and RW = '1') then
