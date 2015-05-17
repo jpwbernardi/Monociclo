@@ -27,6 +27,8 @@ begin
         ULASel <= "110";
       elsif(func = "101010") then
         ULASel <= "111";
+      elsif(func = "100100") then
+        ULASel <= "000";
       end if;
     end if;
   end process;

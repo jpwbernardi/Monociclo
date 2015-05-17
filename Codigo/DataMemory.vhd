@@ -13,7 +13,7 @@ entity DataMemory is --Instruction Memory
 end DataMemory;
 
 architecture cmp of DataMemory is
-signal memoria: VetorWord(0 to 64);  --256 Bytes de memória  (64 * 32 bits)
+signal memoria: VetorWord(0 to 63);  --256 Bytes de memória  (64 * 32 bits)
 begin
   process(WriteD, Adress, MemWrite1)
   begin

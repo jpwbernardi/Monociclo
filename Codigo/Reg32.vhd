@@ -6,7 +6,7 @@ entity Reg32 is
   Port(
     clk: in std_logic;
     e: in signed(31 downto 0);
-    s: out signed(31 downto 0)
+    s1: out signed(31 downto 0)
   );
 end Reg32;
 
@@ -15,7 +15,7 @@ begin
   process(clk)
   begin
     if(clk = '1') then
-      s <= e;
+      s1 <= e;
     end if;
   end process;
 end comp;
