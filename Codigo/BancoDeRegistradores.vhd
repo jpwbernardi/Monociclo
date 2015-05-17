@@ -19,7 +19,7 @@ begin
   RD1 <= RD1aux;
   RD2 <= RD2aux;
   ra <= r31;
-  
+  r0 <= "00000000000000000000000000000000";
   process (jal)
   begin
     if(jal = '1') then
