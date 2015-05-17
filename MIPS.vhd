@@ -102,6 +102,7 @@ architecture cmp of MIPS is
     Port(
       ALUOp : in signed(1 downto 0);
       func: in signed(5 downto 0);
+      jr: out std_logic;
       ULASel: out signed(2 downto 0)
     );
   end component;
