@@ -11,5 +11,5 @@ end SingExtend16to32;
 
 architecture comp of SingExtend16to32 is
 begin
-  ss <= ee & "0000000000000000";
+  ss <= "0000000000000000" & ee;
 end comp;

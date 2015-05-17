@@ -17,7 +17,7 @@ begin
       when "000000" =>  --Tipo R
         RegDst <= '1';
         Branch <= '0';
-        jump <= '0';
+       jump <= '0';
         MemRead <= '0';
         MemtoReg <= '0';
         ALUOp1 <= '1';
@@ -53,7 +53,7 @@ begin
         RegWrite <= '0';
         jal <= '0';
         BEQ <= '1';
-      when "001100" => --SLTI
+      when "001010" => --SLTI
         RegDst <= '0';
         Branch <= '0';
         jump <= '0';

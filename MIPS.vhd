@@ -6,7 +6,7 @@ use work.NovosTipos.all;
 entity MIPS is
   Port(
     programa: in VetorWord(0 to 63);
-    clk: in std_logic
+    clk, reset: in std_logic
   );
 end MIPS;
 
@@ -44,7 +44,7 @@ architecture cmp of MIPS is
     );
   end component;
   
-  component mux2x1 is
+  component mux5bits is
     Port(
       e0, e1 : in signed(4 downto 0);
       sel: in std_logic;
@@ -54,7 +54,7 @@ architecture cmp of MIPS is
   
   component Reg32 is
     Port(
-      clk: in std_logic;
+      ck: in std_logic;
       e: in signed(31 downto 0);
       s1: out signed(31 downto 0)
     );
@@ -115,8 +115,9 @@ architecture cmp of MIPS is
     );
   end component;
 
-signal instrucaoatual, proxinstrucao, PCmais4: signed(31 downto 0);
-signal writeRegister: signed(4 downto 0);
+signal instrucaoatual, inst, proxinstrucao: signed(31 downto 0);
+signal PCmais4: signed(31 downto 0) := "00000000000000000000000000000000";
+signal writeRegister, aux1, aux2: signed(4 downto 0);
 signal cSelULA: signed(2 downto 0);
 signal cALUOp: signed(1 downto 0);
 signal writeData, Read1, Read2, extendido, exdeslocado, catExtendido, entrada2ULA, saidaULA, muxBranchIn, muxBranchOut, muxPC2Out, cra, creadData: signed(31 downto 0);
@@ -125,29 +126,31 @@ begin
 
   cALUOp <= cALUop1 & cALUOp2;
   selMuxPC1 <= cBranch and (czero xnor cBEQ);
-  control: Controle port map(instrucaoatual(31 downto 26), cALUOp1, cALUOp2, cBranch, cMemRead, cMemtoReg, cjump, cMemWrite, cALUSrc, cRegWrite, cBEQ, cjal, cRegDst);
-  muxBanco: mux2x1 port map(instrucaoatual(20 downto 16), instrucaoatual(15 downto 11), cRegDst, writeRegister);
-  bdr: bancoDeRegistradores port map(instrucaoatual(25 downto 21), instrucaoatual(20 downto 16), writeRegister, writeData, PCmais4, cjal, cRegWrite, Read1, Read2, cra);  
-    
-
-  signExtend: SingExtend16to32 port map(instrucaoatual(15 downto 0), extendido);
+  
+  inst <= programa(to_integer(instrucaoatual(31 downto 2)));
+  
+  
+  control: Controle port map(inst(31 downto 26), cALUOp1, cALUOp2, cBranch, cMemRead, cMemtoReg, cjump, cMemWrite, cALUSrc, cRegWrite, cBEQ, cjal, cRegDst);
+  muxBanco: mux5bits port map(inst(20 downto 16), inst(15 downto 11), cRegDst, writeRegister);
+  bdr: bancoDeRegistradores port map(inst(25 downto 21), inst(20 downto 16), writeRegister, writeData, PCmais4, cjal, cRegWrite, Read1, Read2, cra);  
+  signExtend: SingExtend16to32 port map(inst(15 downto 0), extendido);
   muxULA: mux32 port map(Read2, extendido, cALUSrc, entrada2ULA);
   shift: Shift2 port map(extendido, exdeslocado);
   ULAla: ULA port map(Read1, entrada2ULA, cSelULA, czero, saidaULA);
-  controlULA: ULAControl port map(cALUOp, instrucaoatual(5 downto 0), cjr, cSelULA);
+  controlULA: ULAControl port map(cALUOp, inst(5 downto 0), cjr, cSelULA);
   somar4: Soma4 port map(instrucaoatual, PCmais4);
   somadoor: Somador port map(PCmais4, exdeslocado, muxBranchIn);
   muxPc1: mux32 port map(PCmais4, muxBranchIn, selMuxPC1, muxBranchOut);
   muxPc2: mux32 port map(muxBranchOut, catExtendido, cjump, muxPC2Out);
-  oioio: catExtend port map(instrucaoatual(25 downto 0), PCmais4(31 downto 28), catExtendido);
+  oioio: catExtend port map(inst(25 downto 0), PCmais4(31 downto 28), catExtendido);
   muxPc3: mux32 port map(muxPC2Out, cra, cjr, proxinstrucao);
   memoria: DataMemory port map(saidaULA, Read2, cMemWrite, cMemRead, creadData);
   muxMemoria: mux32 port map(saidaULA, creadData, cMemtoReg, writeData);  
 
   
-  process(clk)
+  process(clk, reset)
   begin
-    if(clk = '1' and instrucaoatual = "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU") then
+    if(reset = '1') then
       instrucaoatual <= "00000000000000000000000000000000";
     elsif(clk = '1') then 
       instrucaoatual <= proxinstrucao;

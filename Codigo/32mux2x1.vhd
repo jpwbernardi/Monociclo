@@ -12,7 +12,7 @@ end mux32;
 
 architecture cmp of mux32 is
 begin
-  process(seel)
+  process(seel, ee0, ee1)
   begin
     if(seel = '0') then
       sss <= ee0;

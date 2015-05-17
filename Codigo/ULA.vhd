@@ -19,6 +19,8 @@ begin
   begin
     if(aux = "00000000000000000000000000000000") then
       zero <= '1';
+    else
+      zero <= '0';
     end if;
   end process;
 
