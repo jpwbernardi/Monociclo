@@ -5,7 +5,7 @@ use IEEE.numeric_std.all;
 entity Controle is
   Port(
     Instruction: in signed(5 downto 0);
-    ALUOp1, ALUOp2, Branch, MemRead, MemtoReg, jump, MemWrite, ALUSrc, RegWrite, BEQ, jal, jr, RegDst : out std_logic
+    ALUOp1, ALUOp2, Branch, MemRead, MemtoReg, jump, MemWrite, ALUSrc, RegWrite, BEQ, jal, RegDst : out std_logic
   );
 end Controle;
 
@@ -25,7 +25,6 @@ begin
         MemWrite <= '0';
         ALUSrc  <= '0';
         RegWrite <= '1';
-        jr <= '0';
         jal <= '0';
         BEQ <= '0';
       when "000101" =>  --BNE
@@ -39,7 +38,6 @@ begin
         MemWrite <= '0';
         ALUSrc  <= '0';
         RegWrite <= '0';
-        jr <= '0';
         jal <= '0';
         BEQ <= '0';
       when "000100" =>  --BEQ
@@ -53,7 +51,6 @@ begin
         MemWrite <= '0';
         ALUSrc  <= '0';
         RegWrite <= '0';
-        jr <= '0';
         jal <= '0';
         BEQ <= '1';
       when "001100" => --SLTI
@@ -67,7 +64,6 @@ begin
         MemWrite <= '0';
         ALUSrc  <= '1';
         RegWrite <= '1';
-        jr <= '0';
         jal <= '0';
         BEQ <= '0';
       when "100011" => --Load
@@ -81,7 +77,6 @@ begin
         MemWrite <= '0';
         ALUSrc  <= '1';
         RegWrite <= '1';
-        jr <= '0';
         jal <= '0';
         BEQ <= '0';
       when "101011" => --SW
@@ -95,7 +90,6 @@ begin
         MemWrite <= '1';
         ALUSrc  <= '1';
         RegWrite <= '0';
-        jr <= '0';
         jal <= '0';
         BEQ <= '0';
       when "001000" => --ADDI
@@ -109,7 +103,6 @@ begin
         MemWrite <= '0';
         ALUSrc  <= '1';
         RegWrite <= '1';
-        jr <= '0';
         jal <= '0';
         BEQ <= '0';
       when "000010" => --Jump
@@ -123,7 +116,6 @@ begin
         MemWrite <= '0';
         ALUSrc  <= '0';
         RegWrite <= '0';
-        jr <= '0';
         jal <= '0';
         BEQ <= '0';
       when "000011" => --JAL
@@ -137,7 +129,6 @@ begin
         MemWrite <= '0';
         ALUSrc  <= '0';
         RegWrite <= '0';
-        jr <= '0';
         jal <= '1';
         BEQ <= '0';
       when others =>
@@ -151,7 +142,6 @@ begin
         MemWrite <= '0';
         ALUSrc  <= '0';
         RegWrite <= '0';
-        jr <= '0';
         jal <= '0';
         BEQ <= '0';
     end case;

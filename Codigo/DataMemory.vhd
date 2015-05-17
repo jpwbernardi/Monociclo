@@ -18,14 +18,14 @@ begin
   process(WriteD, Adress, MemWrite1)
   begin
     if(MemWrite1 = '1') then
-      memoria(to_integer(Adress)) <= WriteD;
+      memoria(to_integer(Adress(31 downto 2))) <= WriteD; --Puro achismo >.<
     end if;
   end process;
   
   process(MemRead1, Adress)
   begin
     if(MemRead1 = '1') then
-      ReadData1 <= memoria(to_integer(Adress));
+      ReadData1 <= memoria(to_integer(Adress(31 downto 2))); --Puro achismo >.<
     end if;
   end process;
 end cmp;
