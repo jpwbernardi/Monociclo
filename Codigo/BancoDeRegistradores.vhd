@@ -27,7 +27,7 @@ begin
     end if;
   end process;
 
-  process(WR, WD, RW)
+  process(WD, RW)
   begin
 		if(WR = "00000" and RW = '1') then
 				r0 <= WD;
