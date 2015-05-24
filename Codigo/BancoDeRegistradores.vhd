@@ -6,7 +6,7 @@ entity BancoDeRegistradores is
   Port(
     RR1, RR2, WR: in signed(4 downto 0); --Read Register    Write Register
     WD, PC4: in signed(31 downto 0); --Write Data e PC + 4
-    jal, RW: in std_logic;  --RegWrite
+    jal, RW, cloock: in std_logic;  --RegWrite
     RD1, RD2, ra: out signed(31 downto 0)
   );
 end BancoDeRegistradores;
@@ -96,8 +96,9 @@ begin
     end if;
   end process;
   
-  process(RR1)
+  process(RR1, cloock)
   begin
+    if((cloock'event and cloock = '1') or RR1'event) then
   		if(RR1 = "00000") then
 				RD1aux <= r0;
 		elsif(RR1 = "00001") then
@@ -163,10 +164,12 @@ begin
 		elsif(RR1 = "11111") then
 				RD1aux <= r31;
 		end if;
+   	end if;
 	end process;
 
-  process(RR2)
+  process(RR2, cloock)
   begin
+    if((cloock'event and cloock = '1') or RR2'event) then
   		if(RR2 = "00000") then
 				RD2aux <= r0;
 		elsif(RR2 = "00001") then
@@ -232,6 +235,7 @@ begin
 		elsif(RR2 = "11111") then
 				RD2aux <= r31;
     end if;
+  		end if;
   end process;
 
 end cmp;

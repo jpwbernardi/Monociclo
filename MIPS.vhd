@@ -15,7 +15,7 @@ architecture cmp of MIPS is
     Port(
       RR1, RR2, WR: in signed(4 downto 0); --Read Register    Write Register
       WD, PC4: in signed(31 downto 0); --Write Data e PC + 4
-      jal, RW: in std_logic;  --RegWrite
+      jal, RW, cloock: in std_logic;  --RegWrite
       RD1, RD2, ra: out signed(31 downto 0)
     );
   end component;
@@ -132,7 +132,7 @@ begin
   
   control: Controle port map(inst(31 downto 26), cALUOp1, cALUOp2, cBranch, cMemRead, cMemtoReg, cjump, cMemWrite, cALUSrc, cRegWrite, cBEQ, cjal, cRegDst);
   muxBanco: mux5bits port map(inst(20 downto 16), inst(15 downto 11), cRegDst, writeRegister);
-  bdr: bancoDeRegistradores port map(inst(25 downto 21), inst(20 downto 16), writeRegister, writeData, PCmais4, cjal, cRegWrite, Read1, Read2, cra);  
+  bdr: bancoDeRegistradores port map(inst(25 downto 21), inst(20 downto 16), writeRegister, writeData, PCmais4, cjal, cRegWrite, clk, Read1, Read2, cra);  
   signExtend: SingExtend16to32 port map(inst(15 downto 0), extendido);
   muxULA: mux32 port map(Read2, extendido, cALUSrc, entrada2ULA);
   shift: Shift2 port map(extendido, exdeslocado);
