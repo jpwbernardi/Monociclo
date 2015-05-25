@@ -39,7 +39,7 @@ architecture cmp of MIPS is
     Port(
       Adress: in signed(31 downto 0);
       WriteD: in signed(31 downto 0);
-      MemWrite1, MemRead1: in std_logic;
+      MemWrite1, MemRead1, cloque: in std_logic;
       ReadData1: out signed(31 downto 0)
     );
   end component;
@@ -144,7 +144,7 @@ begin
   muxPc2: mux32 port map(muxBranchOut, catExtendido, cjump, muxPC2Out);
   oioio: catExtend port map(inst(25 downto 0), PCmais4(31 downto 28), catExtendido);
   muxPc3: mux32 port map(muxPC2Out, cra, cjr, proxinstrucao);
-  memoria: DataMemory port map(saidaULA, Read2, cMemWrite, cMemRead, creadData);
+  memoria: DataMemory port map(saidaULA, Read2, cMemWrite, cMemRead, clk,creadData);
   muxMemoria: mux32 port map(saidaULA, creadData, cMemtoReg, writeData);  
 
   
